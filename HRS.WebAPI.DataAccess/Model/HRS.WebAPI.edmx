@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HRStaffingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="200" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="200" />
+          <Property Name="LastName" Type="varchar" MaxLength="500" />
+          <Property Name="JobTitleId" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="200" />
+          <Property Name="Phone" Type="varchar" MaxLength="30" />
+          <Property Name="Mobile" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="EmploymentsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="JobsOffer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="JobTitle" Type="int" />
+          <Property Name="Responsabilies" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Experience" Type="nvarchar" MaxLength="2000" />
+          <Property Name="EmploymentTypeId" Type="int" />
+          <Property Name="Industry" Type="nvarchar" MaxLength="2000" />
+          <Property Name="LevelStudyId" Type="int" />
+          <Property Name="ExperienceYears" Type="int" />
+          <Property Name="ResponsibleId" Type="int" />
+        </EntityType>
+        <EntityType Name="JobTitles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="JobTitle" Type="varchar" MaxLength="500" />
+          <Property Name="JobDescription" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="LevelsStudy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
+          <Property Name="Desciption" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_Employees_JobTitles">
+          <End Role="JobTitles" Type="Self.JobTitles" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="JobTitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobsOffer_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="JobsOffer" Type="Self.JobsOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobsOffer">
+              <PropertyRef Name="ResponsibleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobsOffer_EmploymentsType">
+          <End Role="EmploymentsType" Type="Self.EmploymentsType" Multiplicity="0..1" />
+          <End Role="JobsOffer" Type="Self.JobsOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmploymentsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobsOffer">
+              <PropertyRef Name="EmploymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobsOffer_JobTitles">
+          <End Role="JobTitles" Type="Self.JobTitles" Multiplicity="0..1" />
+          <End Role="JobsOffer" Type="Self.JobsOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobsOffer">
+              <PropertyRef Name="JobTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobsOffer_LevelsStudy">
+          <End Role="LevelsStudy" Type="Self.LevelsStudy" Multiplicity="0..1" />
+          <End Role="JobsOffer" Type="Self.JobsOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LevelsStudy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobsOffer">
+              <PropertyRef Name="LevelStudyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRStaffingModelStoreContainer">
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmploymentsType" EntityType="Self.EmploymentsType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobsOffer" EntityType="Self.JobsOffer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobTitles" EntityType="Self.JobTitles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LevelsStudy" EntityType="Self.LevelsStudy" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employees_JobTitles" Association="Self.FK_Employees_JobTitles">
+            <End Role="JobTitles" EntitySet="JobTitles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobsOffer_Employees" Association="Self.FK_JobsOffer_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="JobsOffer" EntitySet="JobsOffer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobsOffer_EmploymentsType" Association="Self.FK_JobsOffer_EmploymentsType">
+            <End Role="EmploymentsType" EntitySet="EmploymentsType" />
+            <End Role="JobsOffer" EntitySet="JobsOffer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobsOffer_JobTitles" Association="Self.FK_JobsOffer_JobTitles">
+            <End Role="JobTitles" EntitySet="JobTitles" />
+            <End Role="JobsOffer" EntitySet="JobsOffer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobsOffer_LevelsStudy" Association="Self.FK_JobsOffer_LevelsStudy">
+            <End Role="LevelsStudy" EntitySet="LevelsStudy" />
+            <End Role="JobsOffer" EntitySet="JobsOffer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRStaffingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="JobTitleId" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JobTitles" Relationship="Self.FK_Employees_JobTitles" FromRole="Employees" ToRole="JobTitles" />
+          <NavigationProperty Name="JobsOffer" Relationship="Self.FK_JobsOffer_Employees" FromRole="Employees" ToRole="JobsOffer" />
+        </EntityType>
+        <EntityType Name="EmploymentsType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JobsOffer" Relationship="Self.FK_JobsOffer_EmploymentsType" FromRole="EmploymentsType" ToRole="JobsOffer" />
+        </EntityType>
+        <EntityType Name="JobsOffer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="JobTitle" Type="Int32" />
+          <Property Name="Responsabilies" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Experience" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="EmploymentTypeId" Type="Int32" />
+          <Property Name="Industry" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="LevelStudyId" Type="Int32" />
+          <Property Name="ExperienceYears" Type="Int32" />
+          <Property Name="ResponsibleId" Type="Int32" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_JobsOffer_Employees" FromRole="JobsOffer" ToRole="Employees" />
+          <NavigationProperty Name="EmploymentsType" Relationship="Self.FK_JobsOffer_EmploymentsType" FromRole="JobsOffer" ToRole="EmploymentsType" />
+          <NavigationProperty Name="JobTitles" Relationship="Self.FK_JobsOffer_JobTitles" FromRole="JobsOffer" ToRole="JobTitles" />
+          <NavigationProperty Name="LevelsStudy" Relationship="Self.FK_JobsOffer_LevelsStudy" FromRole="JobsOffer" ToRole="LevelsStudy" />
+        </EntityType>
+        <EntityType Name="JobTitles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="JobTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="JobDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_JobTitles" FromRole="JobTitles" ToRole="Employees" />
+          <NavigationProperty Name="JobsOffer" Relationship="Self.FK_JobsOffer_JobTitles" FromRole="JobTitles" ToRole="JobsOffer" />
+        </EntityType>
+        <EntityType Name="LevelsStudy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Desciption" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="JobsOffer" Relationship="Self.FK_JobsOffer_LevelsStudy" FromRole="LevelsStudy" ToRole="JobsOffer" />
+        </EntityType>
+        <Association Name="FK_Employees_JobTitles">
+          <End Role="JobTitles" Type="Self.JobTitles" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="JobTitleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobsOffer_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="JobsOffer" Type="Self.JobsOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobsOffer">
+              <PropertyRef Name="ResponsibleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobsOffer_EmploymentsType">
+          <End Role="EmploymentsType" Type="Self.EmploymentsType" Multiplicity="0..1" />
+          <End Role="JobsOffer" Type="Self.JobsOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmploymentsType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobsOffer">
+              <PropertyRef Name="EmploymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobsOffer_JobTitles">
+          <End Role="JobTitles" Type="Self.JobTitles" Multiplicity="0..1" />
+          <End Role="JobsOffer" Type="Self.JobsOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobsOffer">
+              <PropertyRef Name="JobTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobsOffer_LevelsStudy">
+          <End Role="LevelsStudy" Type="Self.LevelsStudy" Multiplicity="0..1" />
+          <End Role="JobsOffer" Type="Self.JobsOffer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LevelsStudy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobsOffer">
+              <PropertyRef Name="LevelStudyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRStaffingModelConn" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="EmploymentsType" EntityType="Self.EmploymentsType" />
+          <EntitySet Name="JobsOffer" EntityType="Self.JobsOffer" />
+          <EntitySet Name="JobTitles" EntityType="Self.JobTitles" />
+          <EntitySet Name="LevelsStudy" EntityType="Self.LevelsStudy" />
+          <AssociationSet Name="FK_Employees_JobTitles" Association="Self.FK_Employees_JobTitles">
+            <End Role="JobTitles" EntitySet="JobTitles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobsOffer_Employees" Association="Self.FK_JobsOffer_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="JobsOffer" EntitySet="JobsOffer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobsOffer_EmploymentsType" Association="Self.FK_JobsOffer_EmploymentsType">
+            <End Role="EmploymentsType" EntitySet="EmploymentsType" />
+            <End Role="JobsOffer" EntitySet="JobsOffer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobsOffer_JobTitles" Association="Self.FK_JobsOffer_JobTitles">
+            <End Role="JobTitles" EntitySet="JobTitles" />
+            <End Role="JobsOffer" EntitySet="JobsOffer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobsOffer_LevelsStudy" Association="Self.FK_JobsOffer_LevelsStudy">
+            <End Role="LevelsStudy" EntitySet="LevelsStudy" />
+            <End Role="JobsOffer" EntitySet="JobsOffer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRStaffingModelStoreContainer" CdmEntityContainer="HRStaffingModelConn">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="HRStaffingModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="JobTitleId" ColumnName="JobTitleId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmploymentsType">
+            <EntityTypeMapping TypeName="HRStaffingModel.EmploymentsType">
+              <MappingFragment StoreEntitySet="EmploymentsType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobsOffer">
+            <EntityTypeMapping TypeName="HRStaffingModel.JobsOffer">
+              <MappingFragment StoreEntitySet="JobsOffer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="Responsabilies" ColumnName="Responsabilies" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="EmploymentTypeId" ColumnName="EmploymentTypeId" />
+                <ScalarProperty Name="Industry" ColumnName="Industry" />
+                <ScalarProperty Name="LevelStudyId" ColumnName="LevelStudyId" />
+                <ScalarProperty Name="ExperienceYears" ColumnName="ExperienceYears" />
+                <ScalarProperty Name="ResponsibleId" ColumnName="ResponsibleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobTitles">
+            <EntityTypeMapping TypeName="HRStaffingModel.JobTitles">
+              <MappingFragment StoreEntitySet="JobTitles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LevelsStudy">
+            <EntityTypeMapping TypeName="HRStaffingModel.LevelsStudy">
+              <MappingFragment StoreEntitySet="LevelsStudy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desciption" ColumnName="Desciption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
