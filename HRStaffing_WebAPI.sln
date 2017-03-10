@@ -15,6 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRS_WCF", "HRS_WCF\HRS_WCF.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRS_Services", "HRS_Services\HRS_Services.csproj", "{3A63BB56-0F41-4B4E-B9B3-258D0DDEB329}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataBase", "DataBase", "{F8168FCE-E606-456B-ABA5-7428B86EF3F8}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Angular\HRStaffingDB.bak = ..\..\Angular\HRStaffingDB.bak
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{3DFC477A-F361-474D-AB1C-6D408A5CDCF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,8 +52,15 @@ Global
 		{3A63BB56-0F41-4B4E-B9B3-258D0DDEB329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A63BB56-0F41-4B4E-B9B3-258D0DDEB329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A63BB56-0F41-4B4E-B9B3-258D0DDEB329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DFC477A-F361-474D-AB1C-6D408A5CDCF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DFC477A-F361-474D-AB1C-6D408A5CDCF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DFC477A-F361-474D-AB1C-6D408A5CDCF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DFC477A-F361-474D-AB1C-6D408A5CDCF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3DFC477A-F361-474D-AB1C-6D408A5CDCF3} = {F8168FCE-E606-456B-ABA5-7428B86EF3F8}
 	EndGlobalSection
 EndGlobal
