@@ -35,5 +35,24 @@ namespace HRS_Services.DataContract
 
         [DataMember]
         public Nullable<int> ResponsibleId { get; set; }
+
+        #region Non Entity
+
+        [DataMember]
+        public string JobTitleName { get; set; }
+
+        [DataMember]
+        public string EmploymentTypeName { get; set; }
+
+        [DataMember]
+        public string LevelStudyName { get; set; }
+
+        [DataMember]
+        public string Responsible { get; set; }
+
+        [DataMember]
+        public string ResponsibleMail { get; set; }
+
+        #endregion
     }
 }

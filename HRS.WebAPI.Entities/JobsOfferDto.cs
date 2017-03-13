@@ -17,5 +17,15 @@ namespace HRS.WebAPI.Entities
         public Nullable<int> LevelStudyId { get; set; }
         public Nullable<int> ExperienceYears { get; set; }
         public Nullable<int> ResponsibleId { get; set; }
+
+        #region Non Entity
+
+        public string JobTitleName { get; set; }
+        public string EmploymentTypeName { get; set; }
+        public string LevelStudyName { get; set; }
+        public string Responsible { get; set; }
+        public string ResponsibleMail { get; set; }
+
+        #endregion
     }
 }

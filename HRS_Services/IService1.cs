@@ -24,7 +24,7 @@ namespace HRS_Services
         [OperationContract]
         [WebInvoke(Method = "GET",
         ResponseFormat = WebMessageFormat.Json,
-        BodyStyle = WebMessageBodyStyle.Wrapped,
+        BodyStyle = WebMessageBodyStyle.Wrapped,         
         UriTemplate = "GetJobsOffer")]
         List<JobsOfferDC> getAllJobs();
     }

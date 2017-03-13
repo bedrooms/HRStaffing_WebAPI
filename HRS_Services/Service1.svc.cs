@@ -28,6 +28,18 @@ namespace HRS_Services
                 JobsOfferDC JODC = new JobsOfferDC();
 
                 JODC.Id = item.Id;
+                JODC.EmploymentTypeId = item.EmploymentTypeId;
+                JODC.Experience = item.Experience;
+                JODC.ExperienceYears = item.ExperienceYears;
+                JODC.Industry = item.Industry;
+                JODC.JobTitle = item.JobTitle;
+                JODC.LevelStudyId = item.LevelStudyId;
+                JODC.Responsabilies = item.Responsabilies;
+                JODC.ResponsibleId = item.ResponsibleId;
+
+                JODC.JobTitleName = item.JobTitleName;
+                JODC.EmploymentTypeName = item.EmploymentTypeName;
+                JODC.LevelStudyName = item.LevelStudyName;
 
                 result.Add(JODC);
 

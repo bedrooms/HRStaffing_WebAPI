@@ -27,7 +27,11 @@ namespace HRS.WebAPI.DataAccess
                                                    Industry = jo.Industry,
                                                    LevelStudyId = jo.LevelStudyId,
                                                    Responsabilies = jo.Responsabilies,
-                                                   ResponsibleId = jo.ResponsibleId
+                                                   ResponsibleId = jo.ResponsibleId,
+                                                   //
+                                                   JobTitleName = jo.JobTitles.JobTitle,
+                                                   EmploymentTypeName = jo.EmploymentsType.Name,
+                                                   LevelStudyName = jo.LevelsStudy.Name                                                   
                                                });
 
                 response.Data = query.ToList();
