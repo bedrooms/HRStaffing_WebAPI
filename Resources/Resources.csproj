@@ -46,6 +46,7 @@
   <ItemGroup>
     <None Include="res\HRStaffingDB.bak" />
     <None Include="res\HRStaffingDB_0312.bak" />
+    <None Include="res\HRStaffingDB_0314.bak" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
