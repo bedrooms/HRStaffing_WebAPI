@@ -15,5 +15,11 @@ namespace HRS.WebAPI.Bussiness
             JobsRepository jobsRepository = new JobsRepository();
             return jobsRepository.getAllJobs();
         }
+
+        public ResponseDto<List<JobTitlesDto>> getAllJobsgetAllPositionsOffer()
+        {
+            JobsRepository jobsRepository = new JobsRepository();
+            return jobsRepository.getAllJobsgetAllPositionsOffer();
+        }
     }
 }

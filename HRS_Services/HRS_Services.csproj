@@ -70,15 +70,17 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service1.svc" />
+    <Content Include="HRAPISevice.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContract\JobsOfferDC.cs" />
-    <Compile Include="Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
+    <Compile Include="DataContract\JobTitlesDC.cs" />
+    <Compile Include="DataTransform\JobsOfferDT.cs" />
+    <Compile Include="HRAPISevice.svc.cs">
+      <DependentUpon>HRAPISevice.svc</DependentUpon>
     </Compile>
-    <Compile Include="IService1.cs" />
+    <Compile Include="IHRAPISevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

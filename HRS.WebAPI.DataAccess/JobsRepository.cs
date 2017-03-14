@@ -40,5 +40,28 @@ namespace HRS.WebAPI.DataAccess
             }
           
         }
+
+        public ResponseDto<List<JobTitlesDto>> getAllJobsgetAllPositionsOffer()
+        {
+            ResponseDto<List<JobTitlesDto>> response = new ResponseDto<List<JobTitlesDto>>();
+
+            using (HRStaffingModelConn objEntities = new HRStaffingModelConn())
+            {
+                IQueryable<JobTitlesDto> query = (from jt in objEntities.JobTitles
+                                                  select new JobTitlesDto()
+                                                  {
+                                                      Id = jt.Id,
+                                                      JobTitle = jt.JobTitle,
+                                                      JobDescription = jt.JobDescription,
+                                                      JobIndustryId = jt.JobIndustryId,                                                     
+                                                      JobTitleIndustryName = jt.JobIndustry.Name
+                                                  });
+
+                response.Data = query.ToList();
+
+                return response;
+            }
+
+        }
     }
 }

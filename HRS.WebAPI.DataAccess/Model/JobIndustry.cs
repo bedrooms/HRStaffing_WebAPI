@@ -12,24 +12,19 @@ namespace HRS.WebAPI.DataAccess.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class JobTitles
+    public partial class JobIndustry
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public JobTitles()
+        public JobIndustry()
         {
-            this.Employees = new HashSet<Employees>();
-            this.JobsOffer = new HashSet<JobsOffer>();
+            this.JobTitles = new HashSet<JobTitles>();
         }
     
         public int Id { get; set; }
-        public string JobTitle { get; set; }
-        public string JobDescription { get; set; }
-        public Nullable<int> JobIndustryId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employees> Employees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<JobsOffer> JobsOffer { get; set; }
-        public virtual JobIndustry JobIndustry { get; set; }
+        public virtual ICollection<JobTitles> JobTitles { get; set; }
     }
 }

@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HRStaffingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HRStaffingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="200" />
           <Property Name="MiddleName" Type="varchar" MaxLength="200" />
           <Property Name="LastName" Type="varchar" MaxLength="500" />
@@ -22,15 +22,23 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="200" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="JobIndustry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="JobsOffer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="JobTitle" Type="int" />
           <Property Name="Responsabilies" Type="nvarchar" MaxLength="2000" />
           <Property Name="Experience" Type="nvarchar" MaxLength="2000" />
@@ -44,15 +52,16 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="JobTitle" Type="varchar" MaxLength="500" />
           <Property Name="JobDescription" Type="nvarchar" MaxLength="2000" />
+          <Property Name="JobIndustryId" Type="int" />
         </EntityType>
         <EntityType Name="LevelsStudy">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="200" />
           <Property Name="Desciption" Type="varchar" MaxLength="500" />
         </EntityType>
@@ -116,9 +125,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_JobTitles_JobIndustry">
+          <End Role="JobIndustry" Type="Self.JobIndustry" Multiplicity="0..1" />
+          <End Role="JobTitles" Type="Self.JobTitles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobIndustry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobTitles">
+              <PropertyRef Name="JobIndustryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="HRStaffingModelStoreContainer">
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmploymentsType" EntityType="Self.EmploymentsType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobIndustry" EntityType="Self.JobIndustry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobsOffer" EntityType="Self.JobsOffer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobTitles" EntityType="Self.JobTitles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LevelsStudy" EntityType="Self.LevelsStudy" Schema="dbo" store:Type="Tables" />
@@ -142,9 +164,12 @@
             <End Role="LevelsStudy" EntitySet="LevelsStudy" />
             <End Role="JobsOffer" EntitySet="JobsOffer" />
           </AssociationSet>
+          <AssociationSet Name="FK_JobTitles_JobIndustry" Association="Self.FK_JobTitles_JobIndustry">
+            <End Role="JobIndustry" EntitySet="JobIndustry" />
+            <End Role="JobTitles" EntitySet="JobTitles" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRStaffingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -199,6 +224,8 @@
           <Property Name="JobDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_JobTitles" FromRole="JobTitles" ToRole="Employees" />
           <NavigationProperty Name="JobsOffer" Relationship="Self.FK_JobsOffer_JobTitles" FromRole="JobTitles" ToRole="JobsOffer" />
+          <Property Name="JobIndustryId" Type="Int32" />
+          <NavigationProperty Name="JobIndustry" Relationship="HRStaffingModel.FK_JobTitles_JobIndustry" FromRole="JobTitles" ToRole="JobIndustry" />
         </EntityType>
         <EntityType Name="LevelsStudy">
           <Key>
@@ -295,7 +322,33 @@
             <End Role="LevelsStudy" EntitySet="LevelsStudy" />
             <End Role="JobsOffer" EntitySet="JobsOffer" />
           </AssociationSet>
+          <EntitySet Name="JobIndustry" EntityType="HRStaffingModel.JobIndustry" />
+          <AssociationSet Name="FK_JobTitles_JobIndustry" Association="HRStaffingModel.FK_JobTitles_JobIndustry">
+            <End Role="JobIndustry" EntitySet="JobIndustry" />
+            <End Role="JobTitles" EntitySet="JobTitles" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="JobIndustry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="JobTitles" Relationship="HRStaffingModel.FK_JobTitles_JobIndustry" FromRole="JobIndustry" ToRole="JobTitles" />
+        </EntityType>
+        <Association Name="FK_JobTitles_JobIndustry">
+          <End Type="HRStaffingModel.JobIndustry" Role="JobIndustry" Multiplicity="0..1" />
+          <End Type="HRStaffingModel.JobTitles" Role="JobTitles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobIndustry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobTitles">
+              <PropertyRef Name="JobIndustryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -343,6 +396,7 @@
           <EntitySetMapping Name="JobTitles">
             <EntityTypeMapping TypeName="HRStaffingModel.JobTitles">
               <MappingFragment StoreEntitySet="JobTitles">
+                <ScalarProperty Name="JobIndustryId" ColumnName="JobIndustryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
@@ -355,6 +409,15 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Desciption" ColumnName="Desciption" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobIndustry">
+            <EntityTypeMapping TypeName="HRStaffingModel.JobIndustry">
+              <MappingFragment StoreEntitySet="JobIndustry">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

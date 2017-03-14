@@ -59,19 +59,22 @@
       <DependentUpon>HRS.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\HRS.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>HRS.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Model\HRS.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>HRS.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Model\HRS.WebAPI.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>HRS.WebAPI.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Model\JobIndustry.cs">
+      <DependentUpon>HRS.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\JobsOffer.cs">
       <DependentUpon>HRS.tt</DependentUpon>
@@ -92,32 +95,34 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Model\HRS.WebAPI.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HRS.WebAPI.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="Model\HRS.WebAPI.edmx.diagram">
       <DependentUpon>HRS.WebAPI.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\HRS.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HRS.WebAPI.edmx</DependentUpon>
-      <LastGenOutput>HRS.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\HRS.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HRS.WebAPI.edmx</DependentUpon>
-      <LastGenOutput>HRS.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model\HRS.WebAPI.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HRS.WebAPI.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\HRS.Context.tt">
+      <DependentUpon>HRS.WebAPI.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>HRS.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\HRS.tt">
+      <DependentUpon>HRS.WebAPI.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>HRS.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

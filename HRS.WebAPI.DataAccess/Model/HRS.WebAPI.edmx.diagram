@@ -8,13 +8,15 @@
         <EntityTypeShape EntityType="HRStaffingModel.Employees" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HRStaffingModel.EmploymentsType" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HRStaffingModel.JobsOffer" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRStaffingModel.JobTitles" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRStaffingModel.JobTitles" Width="1.5" PointX="0.5" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="HRStaffingModel.LevelsStudy" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
         <AssociationConnector Association="HRStaffingModel.FK_Employees_JobTitles" ManuallyRouted="false" />
         <AssociationConnector Association="HRStaffingModel.FK_JobsOffer_Employees" ManuallyRouted="false" />
         <AssociationConnector Association="HRStaffingModel.FK_JobsOffer_EmploymentsType" ManuallyRouted="false" />
         <AssociationConnector Association="HRStaffingModel.FK_JobsOffer_JobTitles" ManuallyRouted="false" />
         <AssociationConnector Association="HRStaffingModel.FK_JobsOffer_LevelsStudy" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HRStaffingModel.JobIndustry" Width="1.5" PointX="0.75" PointY="6" />
+        <AssociationConnector Association="HRStaffingModel.FK_JobTitles_JobIndustry" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
