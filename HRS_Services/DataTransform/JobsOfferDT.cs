@@ -43,27 +43,53 @@ namespace HRS_Services.DataTransform
             return result;
         }
 
-        public List<JobTitlesDC> getAllPositionsOffer()
+        public Dictionary<string, List<JobTitlesDC>> getAllPositionsOffer()
         {
-            List<JobTitlesDC> result = new List<JobTitlesDC>();
+            Dictionary<string, List<JobTitlesDC>> result = new Dictionary<string, List<JobTitlesDC>>();
 
             JobsOfferBL jobsOfferBL = new JobsOfferBL();
 
             List<JobTitlesDto> jobTitlesDto = jobsOfferBL.getAllJobsgetAllPositionsOffer().Data;
 
+            string jobTitleIndustryName = string.Empty;
+            List<JobTitlesDC> resultI = new List<JobTitlesDC>();
+
             foreach (var item in jobTitlesDto)
             {
                 JobTitlesDC JODC = new JobTitlesDC();
 
-                JODC.Id = item.Id;
-                JODC.JobTitle = item.JobTitle;
-                JODC.JobDescription = item.JobDescription;
-                JODC.JobIndustryId = item.JobIndustryId;
-                JODC.JobTitleIndustryName = item.JobTitleIndustryName;              
+                if (jobTitleIndustryName != item.JobTitleIndustryName)
+                {
+                    if (resultI.Count > 0)
+                    {                       
+                        result.Add(jobTitleIndustryName, resultI);
+                        resultI = new List<JobTitlesDC>();
+                    }
+                        
+                    jobTitleIndustryName = item.JobTitleIndustryName;
 
-                result.Add(JODC);
+                    JODC.Id = item.Id;
+                    JODC.JobTitle = item.JobTitle;
+                    JODC.JobDescription = item.JobDescription;
+                    JODC.JobIndustryId = item.JobIndustryId;
+                    JODC.JobTitleIndustryName = item.JobTitleIndustryName;
+
+                    resultI.Add(JODC);
+                }
+                else
+                {
+                    JODC.Id = item.Id;
+                    JODC.JobTitle = item.JobTitle;
+                    JODC.JobDescription = item.JobDescription;
+                    JODC.JobIndustryId = item.JobIndustryId;
+                    JODC.JobTitleIndustryName = item.JobTitleIndustryName;
+
+                    resultI.Add(JODC);
+                }        
+
+               
             }
-
+            result.Add(jobTitleIndustryName, resultI);
             return result;
         }
     }

@@ -26,6 +26,6 @@ namespace HRS_Services
         ResponseFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Wrapped,
         UriTemplate = "GetPositionsOffer")]
-        List<JobTitlesDC> getAllPositionsOffer();
+        Dictionary<string, List<JobTitlesDC>> getAllPositionsOffer();
     }
 }

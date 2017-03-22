@@ -22,7 +22,7 @@ namespace HRS_Services
             return jobsOfferDT.getAllJobs();
         }
 
-        public List<JobTitlesDC> getAllPositionsOffer()
+        public Dictionary<string, List<JobTitlesDC>> getAllPositionsOffer()
         {
             JobsOfferDT jobsOfferDT = new JobsOfferDT();
             return jobsOfferDT.getAllPositionsOffer();

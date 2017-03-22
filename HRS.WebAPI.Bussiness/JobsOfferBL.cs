@@ -12,6 +12,9 @@ namespace HRS.WebAPI.Bussiness
     {
         public ResponseDto<List<JobsOfferDto>> getAllJobs()
         {
+            MySql.DataAccess.MySql_JobsRepository jr = new MySql.DataAccess.MySql_JobsRepository();
+            return jr.getAllJobs();
+
             JobsRepository jobsRepository = new JobsRepository();
             return jobsRepository.getAllJobs();
         }

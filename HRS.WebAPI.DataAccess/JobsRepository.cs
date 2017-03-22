@@ -58,6 +58,7 @@ namespace HRS.WebAPI.DataAccess
                                                   });
 
                 response.Data = query.ToList();
+                response.Data.OrderBy(x => x.JobTitleIndustryName);
 
                 return response;
             }

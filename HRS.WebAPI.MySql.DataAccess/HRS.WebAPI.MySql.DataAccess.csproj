@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1A13A1C3-1865-4CD3-B386-A1D3BC191138}</ProjectGuid>
+    <ProjectGuid>{B9B44B23-775C-4BE7-8EDD-ED798360678C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HRS.WebAPI.Bussiness</RootNamespace>
-    <AssemblyName>HRS.WebAPI.Bussiness</AssemblyName>
+    <RootNamespace>HRS.WebAPI.MySql.DataAccess</RootNamespace>
+    <AssemblyName>HRS.WebAPI.MySql.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,7 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Web, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,22 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JobsOfferBL.cs" />
+    <Compile Include="Connection\MySql_Connection.cs" />
+    <Compile Include="MySql_JobsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HRS.WebAPI.DataAccess\HRS.WebAPI.DataAccess.csproj">
-      <Project>{91626D7E-4CCC-48AB-A9AA-CE7216026073}</Project>
-      <Name>HRS.WebAPI.DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HRS.WebAPI.Entities\HRS.WebAPI.Entities.csproj">
-      <Project>{A487A774-6584-4750-9450-2D0F6ABCA08C}</Project>
+      <Project>{a487a774-6584-4750-9450-2d0f6abca08c}</Project>
       <Name>HRS.WebAPI.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HRS.WebAPI.MySql.DataAccess\HRS.WebAPI.MySql.DataAccess.csproj">
-      <Project>{b9b44b23-775c-4be7-8edd-ed798360678c}</Project>
-      <Name>HRS.WebAPI.MySql.DataAccess</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
