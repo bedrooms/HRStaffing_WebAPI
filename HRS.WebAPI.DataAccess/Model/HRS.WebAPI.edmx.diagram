@@ -17,6 +17,7 @@
         <AssociationConnector Association="HRStaffingModel.FK_JobsOffer_LevelsStudy" ManuallyRouted="false" />
         <EntityTypeShape EntityType="HRStaffingModel.JobIndustry" Width="1.5" PointX="0.75" PointY="6" />
         <AssociationConnector Association="HRStaffingModel.FK_JobTitles_JobIndustry" />
+        <EntityTypeShape EntityType="HRStaffingModel.CompanyServices" Width="1.5" PointX="8" PointY="2.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

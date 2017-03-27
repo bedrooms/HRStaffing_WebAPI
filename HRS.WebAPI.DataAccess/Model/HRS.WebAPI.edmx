@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="HRStaffingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CompanyServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="varchar" MaxLength="200" />
+          <Property Name="ServiceDescription" Type="varchar" MaxLength="500" />
+          <Property Name="ConfgImage" Type="varchar" MaxLength="50" />
+          <Property Name="ConfgColor" Type="varchar" MaxLength="50" />
+          <Property Name="ConfgRedirectsTo" Type="varchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="Id" />
@@ -17,6 +28,7 @@
           <Property Name="Email" Type="varchar" MaxLength="200" />
           <Property Name="Phone" Type="varchar" MaxLength="30" />
           <Property Name="Mobile" Type="varchar" MaxLength="30" />
+          <Property Name="Visible" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="EmploymentsType">
           <Key>
@@ -138,6 +150,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HRStaffingModelStoreContainer">
+          <EntitySet Name="CompanyServices" EntityType="Self.CompanyServices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmploymentsType" EntityType="Self.EmploymentsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobIndustry" EntityType="Self.JobIndustry" Schema="dbo" store:Type="Tables" />
@@ -187,6 +200,7 @@
           <Property Name="Mobile" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="JobTitles" Relationship="Self.FK_Employees_JobTitles" FromRole="Employees" ToRole="JobTitles" />
           <NavigationProperty Name="JobsOffer" Relationship="Self.FK_JobsOffer_Employees" FromRole="Employees" ToRole="JobsOffer" />
+          <Property Name="Visible" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="EmploymentsType">
           <Key>
@@ -327,6 +341,7 @@
             <End Role="JobIndustry" EntitySet="JobIndustry" />
             <End Role="JobTitles" EntitySet="JobTitles" />
           </AssociationSet>
+          <EntitySet Name="CompanyServices" EntityType="HRStaffingModel.CompanyServices" />
         </EntityContainer>
         <EntityType Name="JobIndustry">
           <Key>
@@ -349,6 +364,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CompanyServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ConfgImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ConfgColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ConfgRedirectsTo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -358,6 +384,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="HRStaffingModel.Employees">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Visible" ColumnName="Visible" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
@@ -417,6 +444,18 @@
               <MappingFragment StoreEntitySet="JobIndustry">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyServices">
+            <EntityTypeMapping TypeName="HRStaffingModel.CompanyServices">
+              <MappingFragment StoreEntitySet="CompanyServices">
+                <ScalarProperty Name="ConfgRedirectsTo" ColumnName="ConfgRedirectsTo" />
+                <ScalarProperty Name="ConfgColor" ColumnName="ConfgColor" />
+                <ScalarProperty Name="ConfgImage" ColumnName="ConfgImage" />
+                <ScalarProperty Name="ServiceDescription" ColumnName="ServiceDescription" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

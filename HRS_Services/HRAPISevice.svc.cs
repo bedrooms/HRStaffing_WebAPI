@@ -16,6 +16,28 @@ namespace HRS_Services
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class HRAPISevice : IHRAPISevice
     {
+        #region Company Services
+
+        public List<CompanyServiceDC> GetAllCoServices()
+        {
+            CompanyServicesDT companyServicesDT = new DataTransform.CompanyServicesDT();
+            return companyServicesDT.getAllEmployees();
+        }
+
+        #endregion
+
+        #region Employees        
+
+        public List<EmployeesDC> getAllEmployees()
+        {
+            EmployeesDT employeesDT = new EmployeesDT();
+            return employeesDT.getAllEmployees();
+        }
+
+        #endregion
+
+        #region Jobs
+
         public List<JobsOfferDC> getAllJobs()
         {
             JobsOfferDT jobsOfferDT = new JobsOfferDT();
@@ -26,7 +48,8 @@ namespace HRS_Services
         {
             JobsOfferDT jobsOfferDT = new JobsOfferDT();
             return jobsOfferDT.getAllPositionsOffer();
+        }
 
-        }       
+        #endregion
     }
 }

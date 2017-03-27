@@ -31,5 +31,6 @@ namespace HRS.WebAPI.DataAccess.Model
         public virtual DbSet<JobTitles> JobTitles { get; set; }
         public virtual DbSet<LevelsStudy> LevelsStudy { get; set; }
         public virtual DbSet<JobIndustry> JobIndustry { get; set; }
+        public virtual DbSet<CompanyServices> CompanyServices { get; set; }
     }
 }

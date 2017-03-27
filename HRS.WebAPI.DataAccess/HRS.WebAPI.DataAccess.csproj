@@ -51,8 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompanyServicesRepository.cs" />
     <Compile Include="EmployeesRepository.cs" />
     <Compile Include="JobsRepository.cs" />
+    <Compile Include="Model\CompanyServices.cs">
+      <DependentUpon>HRS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Employees.cs">
       <DependentUpon>HRS.tt</DependentUpon>
     </Compile>
@@ -120,7 +124,7 @@
       <LastGenOutput>HRS.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\HRS.tt">
-      <DependentUpon>HRS.WebAPI.edmx</DependentUpon>
+      <DependentUpon>HRS.Context.tt</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HRS.cs</LastGenOutput>
     </Content>

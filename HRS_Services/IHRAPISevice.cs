@@ -10,10 +10,11 @@ using System.Text;
 
 namespace HRS_Services
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface IHRAPISevice
     {
+        #region Jobs Interface
+       
         [OperationContract]
         [WebInvoke(Method = "GET",
         ResponseFormat = WebMessageFormat.Json,
@@ -27,5 +28,30 @@ namespace HRS_Services
         BodyStyle = WebMessageBodyStyle.Wrapped,
         UriTemplate = "GetPositionsOffer")]
         Dictionary<string, List<JobTitlesDC>> getAllPositionsOffer();
+
+        #endregion
+
+        #region Employees Interface
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        UriTemplate = "GetAllEmployees")]
+        List<EmployeesDC> getAllEmployees();
+
+        #endregion
+
+        #region Company Services
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        UriTemplate = "GetAllCoServices")]
+        List<CompanyServiceDC> GetAllCoServices();
+
+        #endregion
+
     }
 }

@@ -10,17 +10,25 @@ namespace HRS.WebAPI.DataAccess
 {
     public class EmployeesRepository
     {
-        public ResponseDto<List<EmployeesDto>> getAllJobs()
+        public ResponseDto<List<EmployeesDto>> getAllEmployees()
         {
             ResponseDto<List<EmployeesDto>> response = new ResponseDto<List<EmployeesDto>>();
 
             using (HRStaffingModelConn objEntities = new HRStaffingModelConn())
             {
-                IQueryable<EmployeesDto> query = (from jo in objEntities.JobsOffer
+                IQueryable<EmployeesDto> query = (from e in objEntities.Employees
                                                   select new EmployeesDto()
                                                   {
-                                                      Id = jo.Id
-                                                    
+                                                      Id = e.Id,
+                                                      FirstName = e.FirstName,
+                                                      MiddleName = e.MiddleName,
+                                                      LastName = e.LastName,
+                                                      Email = e.Email,
+                                                      Phone = e.Phone,
+                                                      Mobile = e.Mobile,   
+                                                      Visible = e.Visible,                                                   
+                                                      // No entity
+                                                      JobTitleName = e.JobTitles.JobTitle                                                    
                                                   });
 
                 response.Data = query.ToList();
