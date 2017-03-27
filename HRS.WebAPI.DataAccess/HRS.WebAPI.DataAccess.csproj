@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeesRepository.cs" />
     <Compile Include="JobsRepository.cs" />
     <Compile Include="Model\Employees.cs">
       <DependentUpon>HRS.tt</DependentUpon>
