@@ -53,5 +53,16 @@ namespace HRS_Services
 
         #endregion
 
+        #region Authentication
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        UriTemplate = "GetLoginUser/?password={password}&userName={userName}")]
+        EmployeesDC GetLoginUserAuth(string userName, string password);
+
+        #endregion
+
     }
 }

@@ -18,6 +18,7 @@ namespace HRS.WebAPI.DataAccess.Model
         public Employees()
         {
             this.JobsOffer = new HashSet<JobsOffer>();
+            this.Users = new HashSet<Users>();
         }
     
         public int Id { get; set; }
@@ -33,5 +34,7 @@ namespace HRS.WebAPI.DataAccess.Model
         public virtual JobTitles JobTitles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JobsOffer> JobsOffer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

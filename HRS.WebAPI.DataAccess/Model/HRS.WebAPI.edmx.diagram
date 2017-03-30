@@ -7,17 +7,20 @@
       <Diagram DiagramId="5b1b2b4ea3c743cbb9c3081702c6655d" Name="Diagram1">
         <EntityTypeShape EntityType="HRStaffingModel.Employees" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HRStaffingModel.EmploymentsType" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRStaffingModel.JobsOffer" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRStaffingModel.JobTitles" Width="1.5" PointX="0.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRStaffingModel.JobsOffer" Width="1.5" PointX="6.125" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRStaffingModel.JobTitles" Width="1.5" PointX="10.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HRStaffingModel.LevelsStudy" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
         <AssociationConnector Association="HRStaffingModel.FK_Employees_JobTitles" ManuallyRouted="false" />
         <AssociationConnector Association="HRStaffingModel.FK_JobsOffer_Employees" ManuallyRouted="false" />
         <AssociationConnector Association="HRStaffingModel.FK_JobsOffer_EmploymentsType" ManuallyRouted="false" />
         <AssociationConnector Association="HRStaffingModel.FK_JobsOffer_JobTitles" ManuallyRouted="false" />
         <AssociationConnector Association="HRStaffingModel.FK_JobsOffer_LevelsStudy" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="HRStaffingModel.JobIndustry" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="HRStaffingModel.JobIndustry" Width="1.5" PointX="10.5" PointY="5.75" />
         <AssociationConnector Association="HRStaffingModel.FK_JobTitles_JobIndustry" />
-        <EntityTypeShape EntityType="HRStaffingModel.CompanyServices" Width="1.5" PointX="8" PointY="2.75" />
+        <EntityTypeShape EntityType="HRStaffingModel.CompanyServices" Width="1.5" PointX="13" PointY="4.375" />
+        <EntityTypeShape EntityType="HRStaffingModel.Locations" Width="1.5" PointX="13.375" PointY="1.125" />
+        <EntityTypeShape EntityType="HRStaffingModel.Users" Width="1.75" PointX="5.375" PointY="1.625" />
+        <AssociationConnector Association="HRStaffingModel.FK_Users_Employees" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

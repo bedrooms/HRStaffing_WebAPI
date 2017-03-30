@@ -31,6 +31,10 @@ namespace HRS_Services.DataContract
         #region Non Entity
         [DataMember]
         public string JobTitleName { get; set; }
+        [DataMember]
+        public Nullable<System.DateTime> LastSession { get; set; }
+        [DataMember]
+        public bool LoggedSuccess { get; set; }
 
         #endregion
     }

@@ -21,6 +21,7 @@ namespace HRS.WebAPI.Entities
         #region Non Entity
 
         public string JobTitleName { get; set; }
+        public Nullable<System.DateTime> LastSession { get; set; }
 
         #endregion
     }

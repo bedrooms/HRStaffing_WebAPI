@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationRepository.cs" />
     <Compile Include="CompanyServicesRepository.cs" />
     <Compile Include="EmployeesRepository.cs" />
     <Compile Include="JobsRepository.cs" />
@@ -90,6 +91,12 @@
     <Compile Include="Model\LevelsStudy.cs">
       <DependentUpon>HRS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Locations.cs">
+      <DependentUpon>HRS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Users.cs">
+      <DependentUpon>HRS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,7 +131,7 @@
       <LastGenOutput>HRS.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\HRS.tt">
-      <DependentUpon>HRS.Context.tt</DependentUpon>
+      <DependentUpon>HRS.WebAPI.edmx</DependentUpon>
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HRS.cs</LastGenOutput>
     </Content>
