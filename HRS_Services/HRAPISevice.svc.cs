@@ -9,11 +9,14 @@ using HRS.WebAPI.Entities;
 using HRS.WebAPI.Bussiness;
 using HRS_Services.DataContract;
 using HRS_Services.DataTransform;
+using HRS_Services.DataContract.Administration;
+using HRS_Services.DataTransform.Administration;
 
 namespace HRS_Services
 {    
     public class HRAPISevice : IHRAPISevice
     {
+       
         #region Company Services
 
         public List<CompanyServiceDC> GetAllCoServices()
@@ -56,6 +59,16 @@ namespace HRS_Services
         {
             AutenticationDT autenticationDT = new AutenticationDT();
             return autenticationDT.GetLoginUserAuth(userName, password);
+        }
+
+        #endregion
+
+        #region Administration
+
+        public Dictionary<string, List<AdminModulesDC>> GetAllAdminModules()
+        {
+            AdminModuleDT adminModuleDT = new AdminModuleDT();
+            return adminModuleDT.getAllModules();
         }
 
         #endregion

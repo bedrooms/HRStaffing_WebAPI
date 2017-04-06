@@ -51,10 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administration\AdminModulesRepository.cs" />
     <Compile Include="AuthenticationRepository.cs" />
     <Compile Include="CompanyServicesRepository.cs" />
     <Compile Include="EmployeesRepository.cs" />
     <Compile Include="JobsRepository.cs" />
+    <Compile Include="Model\AdminModules.cs">
+      <DependentUpon>HRS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\CompanyServices.cs">
       <DependentUpon>HRS.tt</DependentUpon>
     </Compile>

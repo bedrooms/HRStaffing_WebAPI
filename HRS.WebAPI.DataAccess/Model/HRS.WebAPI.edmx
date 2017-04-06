@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="HRStaffingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminModules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="IdParent" Type="int" Nullable="false" />
+          <Property Name="ConfgIconClass" Type="varchar" MaxLength="50" />
+          <Property Name="ConfgRedirectsTo" Type="varchar" MaxLength="250" />
+        </EntityType>
         <EntityType Name="CompanyServices">
           <Key>
             <PropertyRef Name="Id" />
@@ -182,6 +193,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HRStaffingModelStoreContainer">
+          <EntitySet Name="AdminModules" EntityType="Self.AdminModules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyServices" EntityType="Self.CompanyServices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmploymentsType" EntityType="Self.EmploymentsType" Schema="dbo" store:Type="Tables" />
@@ -387,6 +399,7 @@
             <End Role="Employees" EntitySet="Employees" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="AdminModules" EntityType="HRStaffingModel.AdminModules" />
         </EntityContainer>
         <EntityType Name="JobIndustry">
           <Key>
@@ -453,6 +466,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AdminModules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IdParent" Type="Int32" Nullable="false" />
+          <Property Name="ConfgIconClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ConfgRedirectsTo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -556,6 +580,18 @@
                 <ScalarProperty Name="LastSession" ColumnName="LastSession" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IdEmployee" ColumnName="IdEmployee" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminModules">
+            <EntityTypeMapping TypeName="HRStaffingModel.AdminModules">
+              <MappingFragment StoreEntitySet="AdminModules">
+                <ScalarProperty Name="ConfgRedirectsTo" ColumnName="ConfgRedirectsTo" />
+                <ScalarProperty Name="ConfgIconClass" ColumnName="ConfgIconClass" />
+                <ScalarProperty Name="IdParent" ColumnName="IdParent" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

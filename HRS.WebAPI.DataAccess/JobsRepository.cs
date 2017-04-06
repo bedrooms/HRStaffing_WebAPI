@@ -16,7 +16,7 @@ namespace HRS.WebAPI.DataAccess
 
             using (HRStaffingModelConn objEntities = new HRStaffingModelConn())
             {
-                IQueryable<JobsOfferDto> query = (from jo in objEntities.JobsOffer
+                IQueryable<JobsOfferDto> query = (from jo in objEntities.JobsOffer                                                  
                                                select new JobsOfferDto()
                                                {
                                                    Id = jo.Id,
@@ -48,6 +48,7 @@ namespace HRS.WebAPI.DataAccess
             using (HRStaffingModelConn objEntities = new HRStaffingModelConn())
             {
                 IQueryable<JobTitlesDto> query = (from jt in objEntities.JobTitles
+                                                  where jt.JobIndustryId != 7
                                                   select new JobTitlesDto()
                                                   {
                                                       Id = jt.Id,

@@ -75,11 +75,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContract\Administration\AdminModulesDC.cs" />
     <Compile Include="DataContract\CompanyServiceDC.cs" />
     <Compile Include="DataContract\EmployeesDC.cs" />
     <Compile Include="DataContract\JobsOfferDC.cs" />
     <Compile Include="DataContract\JobTitlesDC.cs" />
     <Compile Include="DataContract\UsersDC.cs" />
+    <Compile Include="DataTransform\Administration\AdminModuleDT.cs" />
     <Compile Include="DataTransform\AutenticationDT.cs" />
     <Compile Include="DataTransform\CompanyServicesDT.cs" />
     <Compile Include="DataTransform\EmployeesDT.cs" />

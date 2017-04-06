@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administration\AdminModuleBL.cs" />
     <Compile Include="AuthenticationBL.cs" />
     <Compile Include="CompanyServicesBL.cs" />
     <Compile Include="EmployeesBL.cs" />

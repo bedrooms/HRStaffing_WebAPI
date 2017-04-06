@@ -1,5 +1,6 @@
 ﻿using HRS.WebAPI.Entities;
 using HRS_Services.DataContract;
+using HRS_Services.DataContract.Administration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,17 @@ namespace HRS_Services
         BodyStyle = WebMessageBodyStyle.Wrapped,
         UriTemplate = "GetLoginUser/?password={password}&userName={userName}")]
         EmployeesDC GetLoginUserAuth(string userName, string password);
+
+        #endregion
+
+        #region Administration
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        UriTemplate = "GetAllModules")]
+        Dictionary<string, List<AdminModulesDC>> GetAllAdminModules();
 
         #endregion
 

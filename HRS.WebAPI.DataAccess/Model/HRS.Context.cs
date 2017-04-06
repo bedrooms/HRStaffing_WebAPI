@@ -34,5 +34,6 @@ namespace HRS.WebAPI.DataAccess.Model
         public virtual DbSet<CompanyServices> CompanyServices { get; set; }
         public virtual DbSet<Locations> Locations { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<AdminModules> AdminModules { get; set; }
     }
 }
