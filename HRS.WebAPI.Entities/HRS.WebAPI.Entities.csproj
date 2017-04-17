@@ -45,6 +45,7 @@
     <Compile Include="EmployeesDto.cs" />
     <Compile Include="EmploymentsTypeDto.cs" />
     <Compile Include="JobIndustryDto.cs" />
+    <Compile Include="JobsOfferApplicationDto.cs" />
     <Compile Include="JobsOfferDto.cs" />
     <Compile Include="JobTitlesDto.cs" />
     <Compile Include="LevelsStudyDto.cs" />

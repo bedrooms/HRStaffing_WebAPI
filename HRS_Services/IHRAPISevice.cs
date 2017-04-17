@@ -30,6 +30,13 @@ namespace HRS_Services
         UriTemplate = "GetPositionsOffer")]
         Dictionary<string, List<JobTitlesDC>> getAllPositionsOffer();
 
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Wrapped,
+        UriTemplate = "saveApplication/?name={name}&mail={mail}&phone={phone}&state={state}&city={city}&resumeCV={resumeCV}&idJobOffer={idJobOffer}")]
+        bool saveJobOfferApplication(string name, string mail, string phone, string state, string city, string resumeCV, int idJobOffer);
+
         #endregion
 
         #region Employees Interface

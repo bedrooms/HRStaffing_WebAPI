@@ -89,6 +89,9 @@
     <Compile Include="Model\JobsOffer.cs">
       <DependentUpon>HRS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\JobsOfferApplication.cs">
+      <DependentUpon>HRS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\JobTitles.cs">
       <DependentUpon>HRS.tt</DependentUpon>
     </Compile>

@@ -10,6 +10,7 @@ namespace HRS.WebAPI.Bussiness
 {
     public class JobsOfferBL
     {
+        #region GET    
         public ResponseDto<List<JobsOfferDto>> getAllJobs()
         {          
             JobsRepository jobsRepository = new JobsRepository();
@@ -21,5 +22,14 @@ namespace HRS.WebAPI.Bussiness
             JobsRepository jobsRepository = new JobsRepository();
             return jobsRepository.getAllJobsgetAllPositionsOffer();
         }
+        #endregion
+
+        #region PUT
+        public ResponseDto<bool> saveJobOfferApplication(JobsOfferApplicationDto application)
+        {
+            JobsRepository jobsRepository = new JobsRepository();
+            return jobsRepository.saveJobOfferApplication(application);
+        }
+        #endregion
     }
 }

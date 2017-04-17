@@ -14,6 +14,12 @@ namespace HRS.WebAPI.DataAccess.Model
     
     public partial class JobsOffer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public JobsOffer()
+        {
+            this.JobsOfferApplication = new HashSet<JobsOfferApplication>();
+        }
+    
         public int Id { get; set; }
         public Nullable<int> JobTitle { get; set; }
         public string Responsabilies { get; set; }
@@ -28,5 +34,7 @@ namespace HRS.WebAPI.DataAccess.Model
         public virtual EmploymentsType EmploymentsType { get; set; }
         public virtual JobTitles JobTitles { get; set; }
         public virtual LevelsStudy LevelsStudy { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<JobsOfferApplication> JobsOfferApplication { get; set; }
     }
 }

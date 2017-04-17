@@ -71,6 +71,19 @@
           <Property Name="ExperienceYears" Type="int" />
           <Property Name="ResponsibleId" Type="int" />
         </EntityType>
+        <EntityType Name="JobsOfferApplication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="Email" Type="varchar" MaxLength="250" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="250" />
+          <Property Name="City" Type="varchar" MaxLength="250" />
+          <Property Name="ResumeCV" Type="nvarchar" MaxLength="2000" />
+          <Property Name="IdJobOffer" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="JobTitles">
           <Key>
             <PropertyRef Name="Id" />
@@ -168,6 +181,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_JobsOfferApplication_JobsOffer">
+          <End Role="JobsOffer" Type="Self.JobsOffer" Multiplicity="1" />
+          <End Role="JobsOfferApplication" Type="Self.JobsOfferApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobsOffer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobsOfferApplication">
+              <PropertyRef Name="IdJobOffer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_JobTitles_JobIndustry">
           <End Role="JobIndustry" Type="Self.JobIndustry" Multiplicity="0..1" />
           <End Role="JobTitles" Type="Self.JobTitles" Multiplicity="*" />
@@ -199,6 +224,7 @@
           <EntitySet Name="EmploymentsType" EntityType="Self.EmploymentsType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobIndustry" EntityType="Self.JobIndustry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobsOffer" EntityType="Self.JobsOffer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobsOfferApplication" EntityType="Self.JobsOfferApplication" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobTitles" EntityType="Self.JobTitles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LevelsStudy" EntityType="Self.LevelsStudy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
@@ -222,6 +248,10 @@
           <AssociationSet Name="FK_JobsOffer_LevelsStudy" Association="Self.FK_JobsOffer_LevelsStudy">
             <End Role="LevelsStudy" EntitySet="LevelsStudy" />
             <End Role="JobsOffer" EntitySet="JobsOffer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobsOfferApplication_JobsOffer" Association="Self.FK_JobsOfferApplication_JobsOffer">
+            <End Role="JobsOffer" EntitySet="JobsOffer" />
+            <End Role="JobsOfferApplication" EntitySet="JobsOfferApplication" />
           </AssociationSet>
           <AssociationSet Name="FK_JobTitles_JobIndustry" Association="Self.FK_JobTitles_JobIndustry">
             <End Role="JobIndustry" EntitySet="JobIndustry" />
@@ -279,6 +309,7 @@
           <NavigationProperty Name="EmploymentsType" Relationship="Self.FK_JobsOffer_EmploymentsType" FromRole="JobsOffer" ToRole="EmploymentsType" />
           <NavigationProperty Name="JobTitles" Relationship="Self.FK_JobsOffer_JobTitles" FromRole="JobsOffer" ToRole="JobTitles" />
           <NavigationProperty Name="LevelsStudy" Relationship="Self.FK_JobsOffer_LevelsStudy" FromRole="JobsOffer" ToRole="LevelsStudy" />
+          <NavigationProperty Name="JobsOfferApplication" Relationship="HRStaffingModel.FK_JobsOfferApplication_JobsOffer" FromRole="JobsOffer" ToRole="JobsOfferApplication" />
         </EntityType>
         <EntityType Name="JobTitles">
           <Key>
@@ -400,6 +431,11 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="AdminModules" EntityType="HRStaffingModel.AdminModules" />
+          <EntitySet Name="JobsOfferApplication" EntityType="HRStaffingModel.JobsOfferApplication" />
+          <AssociationSet Name="FK_JobsOfferApplication_JobsOffer" Association="HRStaffingModel.FK_JobsOfferApplication_JobsOffer">
+            <End Role="JobsOffer" EntitySet="JobsOffer" />
+            <End Role="JobsOfferApplication" EntitySet="JobsOfferApplication" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="JobIndustry">
           <Key>
@@ -477,6 +513,32 @@
           <Property Name="ConfgIconClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ConfgRedirectsTo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="JobsOfferApplication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ResumeCV" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="IdJobOffer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="JobsOffer" Relationship="HRStaffingModel.FK_JobsOfferApplication_JobsOffer" FromRole="JobsOfferApplication" ToRole="JobsOffer" />
+        </EntityType>
+        <Association Name="FK_JobsOfferApplication_JobsOffer">
+          <End Type="HRStaffingModel.JobsOffer" Role="JobsOffer" Multiplicity="1" />
+          <End Type="HRStaffingModel.JobsOfferApplication" Role="JobsOfferApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobsOffer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobsOfferApplication">
+              <PropertyRef Name="IdJobOffer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -591,6 +653,20 @@
                 <ScalarProperty Name="ConfgIconClass" ColumnName="ConfgIconClass" />
                 <ScalarProperty Name="IdParent" ColumnName="IdParent" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobsOfferApplication">
+            <EntityTypeMapping TypeName="HRStaffingModel.JobsOfferApplication">
+              <MappingFragment StoreEntitySet="JobsOfferApplication">
+                <ScalarProperty Name="IdJobOffer" ColumnName="IdJobOffer" />
+                <ScalarProperty Name="ResumeCV" ColumnName="ResumeCV" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

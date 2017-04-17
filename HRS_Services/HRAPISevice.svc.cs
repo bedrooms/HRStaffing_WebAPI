@@ -51,10 +51,16 @@ namespace HRS_Services
             return jobsOfferDT.getAllPositionsOffer();
         }
 
+        public bool saveJobOfferApplication(string name, string mail, string phone, string state, string city, string resumeCV, int idJobOffer)
+        {
+            JobsOfferDT jobsOfferDT = new JobsOfferDT();
+            return jobsOfferDT.saveJobOfferApplication(new JobsOfferApplicationDto() {Name=name, City=city, Email=mail, IdJobOffer= idJobOffer, Phone=phone, ResumeCV=resumeCV, State=state });
+        }
+
         #endregion
 
         #region Authentication
-            
+
         public EmployeesDC GetLoginUserAuth(string userName, string password)
         {
             AutenticationDT autenticationDT = new AutenticationDT();
@@ -69,7 +75,7 @@ namespace HRS_Services
         {
             AdminModuleDT adminModuleDT = new AdminModuleDT();
             return adminModuleDT.getAllModules();
-        }
+        }      
 
         #endregion
     }

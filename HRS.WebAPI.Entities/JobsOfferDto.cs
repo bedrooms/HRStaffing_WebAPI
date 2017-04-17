@@ -26,6 +26,8 @@ namespace HRS.WebAPI.Entities
         public string Responsible { get; set; }
         public string ResponsibleMail { get; set; }
 
+        public virtual EmployeesDto employeesDto { get; set; }
+
         #endregion
     }
 }

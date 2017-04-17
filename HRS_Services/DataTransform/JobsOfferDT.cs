@@ -36,6 +36,8 @@ namespace HRS_Services.DataTransform
                 JODC.EmploymentTypeName = item.EmploymentTypeName;
                 JODC.LevelStudyName = item.LevelStudyName;
 
+                JODC.ResponsibleMail = item.employeesDto.Email;
+
                 result.Add(JODC);
 
             }
@@ -91,6 +93,12 @@ namespace HRS_Services.DataTransform
             }
             result.Add(jobTitleIndustryName, resultI);
             return result;
+        }
+
+        public bool saveJobOfferApplication(JobsOfferApplicationDto application)
+        {
+            JobsOfferBL jobsOfferBL = new JobsOfferBL();
+            return jobsOfferBL.saveJobOfferApplication(application).Data;
         }
     }
 }

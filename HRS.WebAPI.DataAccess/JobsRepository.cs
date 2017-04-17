@@ -10,28 +10,36 @@ namespace HRS.WebAPI.DataAccess
 {
     public class JobsRepository
     {
+        #region GET    
+
         public ResponseDto<List<JobsOfferDto>> getAllJobs()
         {
             ResponseDto<List<JobsOfferDto>> response = new ResponseDto<List<JobsOfferDto>>();
 
             using (HRStaffingModelConn objEntities = new HRStaffingModelConn())
             {
-                IQueryable<JobsOfferDto> query = (from jo in objEntities.JobsOffer                                                  
-                                               select new JobsOfferDto()
-                                               {
-                                                   Id = jo.Id,
-                                                   JobTitle = jo.JobTitle,
-                                                   EmploymentTypeId = jo.EmploymentTypeId,
-                                                   Experience = jo.Experience,
-                                                   ExperienceYears = jo.ExperienceYears,
-                                                   Industry = jo.Industry,
-                                                   LevelStudyId = jo.LevelStudyId,
-                                                   Responsabilies = jo.Responsabilies,
-                                                   ResponsibleId = jo.ResponsibleId,
-                                                   //
-                                                   JobTitleName = jo.JobTitles.JobTitle,
-                                                   EmploymentTypeName = jo.EmploymentsType.Name,
-                                                   LevelStudyName = jo.LevelsStudy.Name                                                   
+                IQueryable<JobsOfferDto> query = (from jo in objEntities.JobsOffer
+                                                  select new JobsOfferDto()
+                                                  {
+                                                      Id = jo.Id,
+                                                      JobTitle = jo.JobTitle,
+                                                      EmploymentTypeId = jo.EmploymentTypeId,
+                                                      Experience = jo.Experience,
+                                                      ExperienceYears = jo.ExperienceYears,
+                                                      Industry = jo.Industry,
+                                                      LevelStudyId = jo.LevelStudyId,
+                                                      Responsabilies = jo.Responsabilies,
+                                                      ResponsibleId = jo.ResponsibleId,
+                                                      //
+                                                      JobTitleName = jo.JobTitles.JobTitle,
+                                                      EmploymentTypeName = jo.EmploymentsType.Name,
+                                                      LevelStudyName = jo.LevelsStudy.Name,
+                                                      //
+                                                      employeesDto = new EmployeesDto()
+                                                      {
+                                                          Email = jo.Employees.Email
+                                                      }
+
                                                });
 
                 response.Data = query.ToList();
@@ -65,5 +73,44 @@ namespace HRS.WebAPI.DataAccess
             }
 
         }
+
+        #endregion
+
+        #region PUT
+
+        public ResponseDto<bool> saveJobOfferApplication(JobsOfferApplicationDto application)
+        {
+            ResponseDto<bool> response = new ResponseDto<bool>();
+
+            response.Data = true;
+
+            int responseId = 0;
+
+            JobsOfferApplication joa = new JobsOfferApplication()
+            {
+                City = application.City,
+                Email = application.Email,
+                IdJobOffer = application.IdJobOffer,
+                Name = application.Name,
+                Phone = application.Phone,
+                ResumeCV = application.ResumeCV,
+                State = application.State
+            };
+
+            using (HRStaffingModelConn objEntities = new HRStaffingModelConn())
+            {
+                objEntities.JobsOfferApplication.Add(joa);
+                objEntities.SaveChanges();
+                responseId = joa.Id;
+            }
+
+            if (responseId == 0)
+                response.Data = false;
+
+            return response;
+
+        }
+
+        #endregion
     }
 }
