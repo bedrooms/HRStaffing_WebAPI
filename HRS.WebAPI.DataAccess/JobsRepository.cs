@@ -26,7 +26,7 @@ namespace HRS.WebAPI.DataAccess
                                                       EmploymentTypeId = jo.EmploymentTypeId,
                                                       Experience = jo.Experience,
                                                       ExperienceYears = jo.ExperienceYears,
-                                                      Industry = jo.Industry,
+                                                      Industry = jo.JobTitles.JobIndustry.Name,
                                                       LevelStudyId = jo.LevelStudyId,
                                                       Responsabilies = jo.Responsabilies,
                                                       ResponsibleId = jo.ResponsibleId,
