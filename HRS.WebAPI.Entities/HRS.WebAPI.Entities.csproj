@@ -49,6 +49,7 @@
     <Compile Include="JobsOfferDto.cs" />
     <Compile Include="JobTitlesDto.cs" />
     <Compile Include="LevelsStudyDto.cs" />
+    <Compile Include="Notifications\Notifications_JobsOfferApplyDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseDto.cs" />
   </ItemGroup>

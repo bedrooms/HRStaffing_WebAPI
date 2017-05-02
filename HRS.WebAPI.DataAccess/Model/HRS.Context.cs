@@ -36,5 +36,6 @@ namespace HRS.WebAPI.DataAccess.Model
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<AdminModules> AdminModules { get; set; }
         public virtual DbSet<JobsOfferApplication> JobsOfferApplication { get; set; }
+        public virtual DbSet<Notifications_JobsOfferApply> Notifications_JobsOfferApply { get; set; }
     }
 }

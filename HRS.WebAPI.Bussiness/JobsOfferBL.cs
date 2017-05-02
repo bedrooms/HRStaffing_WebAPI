@@ -1,5 +1,6 @@
 ﻿using HRS.WebAPI.DataAccess;
 using HRS.WebAPI.Entities;
+using HRS.WebAPI.Entities.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,16 @@ namespace HRS.WebAPI.Bussiness
             JobsRepository jobsRepository = new JobsRepository();
             return jobsRepository.getAllJobsgetAllPositionsOffer();
         }
+
+        public ResponseDto<List<Notifications_JobsOfferApplyDto>> getAllJobsApplyNotifications()
+        {
+            JobsRepository jobsRepository = new JobsRepository();
+            return jobsRepository.getAllJobsApplyNotifications();
+        }
+
         #endregion
 
-        #region PUT
+            #region PUT
         public ResponseDto<bool> saveJobOfferApplication(JobsOfferApplicationDto application)
         {
             JobsRepository jobsRepository = new JobsRepository();

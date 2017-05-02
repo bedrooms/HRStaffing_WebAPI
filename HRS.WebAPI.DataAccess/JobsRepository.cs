@@ -1,5 +1,6 @@
 ﻿using HRS.WebAPI.DataAccess.Model;
 using HRS.WebAPI.Entities;
+using HRS.WebAPI.Entities.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +74,38 @@ namespace HRS.WebAPI.DataAccess
             }
 
         }
+
+        public ResponseDto<List<Notifications_JobsOfferApplyDto>> getAllJobsApplyNotifications()
+        {
+            ResponseDto<List<Notifications_JobsOfferApplyDto>> response = new ResponseDto<List<Notifications_JobsOfferApplyDto>>();
+
+            using (HRStaffingModelConn objEntities = new HRStaffingModelConn())
+            {
+                IQueryable<Notifications_JobsOfferApplyDto> query = (from njoa in objEntities.Notifications_JobsOfferApply
+                                                  select new Notifications_JobsOfferApplyDto()
+                                                  {
+                                                      Id = njoa.Id,
+                                                      DateCreted = njoa.DateCreted,
+                                                      DateSend = njoa.DateSend,
+                                                      IdJobOfferApplication = njoa.IdJobOfferApplication,
+                                                      NotificationSended = njoa.NotificationSended,
+                                                      JobTitleName = njoa.JobsOfferApplication.JobsOffer.JobTitles.JobTitle,
+                                                      ResponsibleToSend = new EmployeesDto()
+                                                      {
+                                                          Email = njoa.JobsOfferApplication.JobsOffer.Employees.Email,
+                                                          FirstName = njoa.JobsOfferApplication.JobsOffer.Employees.FirstName,
+                                                          LastName = njoa.JobsOfferApplication.JobsOffer.Employees.LastName
+                                                      }
+                                                  });
+
+                response.Data = query.ToList();
+
+                return response;
+            }
+
+        }
+
+
 
         #endregion
 

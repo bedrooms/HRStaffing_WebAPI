@@ -101,6 +101,9 @@
     <Compile Include="Model\Locations.cs">
       <DependentUpon>HRS.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Notifications_JobsOfferApply.cs">
+      <DependentUpon>HRS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Users.cs">
       <DependentUpon>HRS.tt</DependentUpon>
     </Compile>

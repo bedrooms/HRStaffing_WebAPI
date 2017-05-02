@@ -14,6 +14,12 @@ namespace HRS.WebAPI.DataAccess.Model
     
     public partial class JobsOfferApplication
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public JobsOfferApplication()
+        {
+            this.Notifications_JobsOfferApply = new HashSet<Notifications_JobsOfferApply>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -22,7 +28,10 @@ namespace HRS.WebAPI.DataAccess.Model
         public string City { get; set; }
         public string ResumeCV { get; set; }
         public int IdJobOffer { get; set; }
+        public Nullable<System.DateTime> ApplicationDate { get; set; }
     
         public virtual JobsOffer JobsOffer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Notifications_JobsOfferApply> Notifications_JobsOfferApply { get; set; }
     }
 }
